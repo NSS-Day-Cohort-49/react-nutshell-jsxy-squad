@@ -5,6 +5,7 @@ import { FriendProvider } from "./friends/FriendProvider"
 import { ArticleProvider } from "./articles/ArticleProvider"
 import { PlannedEventProvider } from "./plannedEvents/PlannedEventProvider"
 import { TaskProvider } from "./tasks/TaskProvider"
+import { TaskList } from "./tasks/TaskList"
 import { MessageProvider } from "./messages/MessageProvider"
 
 export const ApplicationViews = () => {
@@ -39,6 +40,7 @@ export const ApplicationViews = () => {
 
         <TaskProvider>
           <Route path="/tasks">
+            <TaskList />
             {/* Render the component for the user's tasks */}
           </Route>
         </TaskProvider>
