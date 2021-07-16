@@ -6,6 +6,8 @@ import { ArticleProvider } from "./articles/ArticleProvider"
 import { PlannedEventProvider } from "./plannedEvents/PlannedEventProvider"
 import { TaskProvider } from "./tasks/TaskProvider"
 import { MessageProvider } from "./messages/MessageProvider"
+import { FriendList } from "./friends/FriendList"
+import { FriendDetail } from "./friends/FriendDetail"
 
 export const ApplicationViews = () => {
   return (
@@ -23,11 +25,19 @@ export const ApplicationViews = () => {
         </FriendProvider>
 
         <FriendProvider>
-          <Route path="/friends">
+          <Route exact path="/friends">
+              <FriendList />
             {/* Render the component for list of friends */}
           </Route>
         </FriendProvider>
 
+        <FriendProvider>
+          <UserProvider>
+            <Route exact path="/friends/detail/:friendId(\d+)">
+                <FriendDetail />
+            </Route>
+          </UserProvider>
+        </FriendProvider>
 
         <MessageProvider>
           <FriendProvider>
