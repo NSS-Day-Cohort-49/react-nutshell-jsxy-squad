@@ -47,7 +47,7 @@ export const TasksProvider = (props) => {
 
     return (
         <TasksContext.Provider value={{
-            tasks, getTasks, addTask, removeTask, updateTask
+            tasks, getTasks, addTask, removeTask, updateTask, getTaskById
         }}>
             {props.children}
         </TasksContext.Provider>
