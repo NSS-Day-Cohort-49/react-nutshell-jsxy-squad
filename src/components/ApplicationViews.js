@@ -3,6 +3,7 @@ import { Route } from "react-router-dom"
 import { UserProvider } from "./users/UserProvider"
 import { FriendProvider } from "./friends/FriendProvider"
 import { ArticleProvider } from "./articles/ArticleProvider"
+import { ArticleList } from "./articles/ArticleList"
 import { PlannedEventProvider } from "./plannedEvents/PlannedEventProvider"
 import { TaskProvider } from "./tasks/TaskProvider"
 import { MessageProvider } from "./messages/MessageProvider"
@@ -16,7 +17,7 @@ export const ApplicationViews = () => {
           <ArticleProvider>
             <PlannedEventProvider>
               <Route exact path="/">
-              {/* Render the component for news articles */}
+                <ArticleList />
               </Route>
             </PlannedEventProvider>
           </ArticleProvider>
