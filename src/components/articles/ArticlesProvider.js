@@ -2,7 +2,7 @@ import React, { useState, createContext } from "react"
 
 export const ArticleContext = createContext()
 
-export const AricleProvider = (props) => {
+export const ArticalProvider = (props) => {
     const [articles, setArticles] = useState([])
 
     // const getArticleById = (id) => {
