@@ -1,23 +1,31 @@
 import React, { useContext, useEffect } from "react"
+import { useHistory } from "react-router-dom"
 import { ArticleContext } from "./ArticleProvider"
 import { ArticleItem } from "./ArticleItem"
 import "./Articles.css"
 
 export const ArticleList = () => {
     const { articles, getArticles } = useContext(ArticleContext)
+    const history = useHistory()
 
     useEffect(() => {
         getArticles()
     }, [])
 
+    const reversedArticles = articles.sort((a, b) => b.id - a.id)
+
     return (
-        <div className="articles">
-            {
-                articles.map(article => {
-                    {console.log(article)}
-                    return <ArticleItem key={article.id} article={article} />
-                })
-            }
-        </div>
+        <>
+            <button onClick={() => {history.push("/articles/create")}}>
+                New Article
+            </button>
+            <div className="articles">
+                {
+                    reversedArticles.map(article => {
+                        return <ArticleItem key={article.id} article={article} />
+                    })
+                }
+            </div>
+        </>
     )
 }

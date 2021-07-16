@@ -4,6 +4,7 @@ import { UserProvider } from "./users/UserProvider"
 import { FriendProvider } from "./friends/FriendProvider"
 import { ArticleProvider } from "./articles/ArticleProvider"
 import { ArticleList } from "./articles/ArticleList"
+import { ArticleForm } from "./articles/ArticleForm"
 import { PlannedEventProvider } from "./plannedEvents/PlannedEventProvider"
 import { TaskProvider } from "./tasks/TaskProvider"
 import { MessageProvider } from "./messages/MessageProvider"
@@ -22,6 +23,12 @@ export const ApplicationViews = () => {
             </PlannedEventProvider>
           </ArticleProvider>
         </FriendProvider>
+
+        <ArticleProvider>
+          <Route exact path="/articles/create">
+            <ArticleForm />
+          </Route>
+        </ArticleProvider>
 
         <FriendProvider>
           <Route path="/friends">
