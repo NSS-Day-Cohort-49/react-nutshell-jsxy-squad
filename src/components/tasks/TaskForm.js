@@ -23,9 +23,9 @@ export const TaskForm = () => {
         } else {
             addTask ({
                 name: task.name,
-                completeBy: parseInt(task.completeBy),
+                completeBy: task.completeBy,
                 isComplete: false,
-                userId: parseInt(localStorage.getItem("nutshell_user"))
+                userId: parseInt(sessionStorage.getItem("nutshell_user"))
             })
             .then(() => history.push("/tasks"))
         }

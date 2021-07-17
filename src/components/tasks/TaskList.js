@@ -13,16 +13,19 @@ export const TaskList = () => {
     }, [])
 
     return (
-        <div className="tasks">
+        <>
             <h2>Tasks</h2>
-            <button onClick={() => {history.push("/tasks/create")}}>
+            <button onClick={() => { history.push("/tasks/create") }}>
                 Add Task
             </button>
-            {
-                tasks.map(task => {
-                    return <TaskItem key={task.id} task={task} />
-                })
-            }
-        </div>
+            <div className="tasks">
+                {
+                    tasks.map(task => {
+                        if (task.isComplete === false) {
+                        return <TaskItem key={task.id} task={task} />
+                    }})
+                }
+            </div>
+        </>
     )
 }
