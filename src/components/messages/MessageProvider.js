@@ -15,11 +15,10 @@ export const MessageProvider = (props) => {
         return fetch("http://localhost:8088/messages", {
             method: "POST",
             headers: {
-                "Content-Type:": "application.json"
+                "Content-Type": "application/json",
             },
-            body: JSON.Stringify(messageObj)
-        })
-        .then(getMessages)
+            body: JSON.stringify(messageObj),
+        }).then(getMessages)
     }
 
     const removeMessage = id => {
