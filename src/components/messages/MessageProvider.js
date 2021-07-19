@@ -6,13 +6,13 @@ export const MessageProvider = (props) => {
     const [messages, setMessages ] = useState([])
 
     const getMessages = () => {
-        return fetch("localhost:8088/messages")
+        return fetch("http://localhost:8088/messages")
         .then(response => response.json())
         .then(setMessages)
     }
 
     const addMessage = messageObj => {
-        return fetch("localhost:8088/messages", {
+        return fetch("http://localhost:8088/messages", {
             method: "POST",
             headers: {
                 "Content-Type:": "application.json"
@@ -23,7 +23,7 @@ export const MessageProvider = (props) => {
     }
 
     const removeMessage = id => {
-        return fetch(`localhost:8088/messages/${id}`, {
+        return fetch(`http://localhost:8088/messages/${id}`, {
             method: "DELETE"
         })
         .then(getMessages)

@@ -9,6 +9,7 @@ import { PlannedEventProvider } from "./plannedEvents/PlannedEventProvider"
 import { TaskProvider } from "./tasks/TaskProvider"
 import { TaskList } from "./tasks/TaskList"
 import { MessageProvider } from "./messages/MessageProvider"
+import { MessageList } from "./messages/MessageList"
 import { TaskForm } from "./tasks/TaskForm"
 
 export const ApplicationViews = () => {
@@ -42,7 +43,7 @@ export const ApplicationViews = () => {
         <MessageProvider>
           <FriendProvider>
             <Route path="/messages">
-              {/* Render the component for the messages */}
+              <MessageList />
             </Route>
           </FriendProvider>
         </MessageProvider>
