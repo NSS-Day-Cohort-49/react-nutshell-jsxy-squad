@@ -1,0 +1,12 @@
+.plannedEvents {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.plannedEvent {
+    flex-basis: 20%;
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid goldenrod;
+}
