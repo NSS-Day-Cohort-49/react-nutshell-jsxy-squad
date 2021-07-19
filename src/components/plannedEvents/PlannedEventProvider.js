@@ -3,36 +3,58 @@ import React, { useState, createContext } from "react"
 export const PlannedEventContext = createContext()
 
 export const PlannedEventProvider = (props) => {
-    const [plannedEvents, setPlannedEvents ] = useState([])
+    const [plannedEvents, setPlannedEvents] = useState([])
+
+    const getPlannedEventById = (id) => {
+        return fetch(
+            `http://localhost:8088/plannedEvents/${id}
+            `
+        ).then((res) => res.json())
+    }
 
     const getPlannedEvents = () => {
-        return fetch("localhost:8088/plannedEvents")
-        .then(response => response.json())
-        .then(setPlannedEvents)
+        return fetch("http://localhost:8088/plannedEvents?_expand=user")
+            .then((response) => response.json())
+            .then(setPlannedEvents)
     }
 
-    const addPlannedEvent = eventObj => {
-        return fetch("localhost:8088/plannedEvents", {
+    const addPlannedEvent = (eventObj) => {
+        return fetch("http://localhost:8088/plannedEvents", {
             method: "POST",
             headers: {
-                "Content-Type:": "application.json"
+                "Content-Type:": "application/json",
             },
-            body: JSON.Stringify(eventObj)
-        })
-        .then(getPlannedEvents)
+            body: JSON.stringify(eventObj),
+        }).then(getPlannedEvents)
     }
 
-    const removePlannedEvent = id => {
-        return fetch(`localhost:8088/plannedEvents/${id}`, {
-            method: "DELETE"
-        })
-        .then(getPlannedEvents)
+    const updatePlannedEvent = (plannedEvent) => {
+        return fetch(`http://localhost:8088/plannedEvents/${plannedEvent.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(plannedEvent),
+        }).then(getPlannedEvents)
+    }
+
+    const removePlannedEvent = (id) => {
+        return fetch(`http://localhost:8088/plannedEvents/${id}`, {
+            method: "DELETE",
+        }).then(getPlannedEvents)
     }
 
     return (
-        <PlannedEventContext.Provider value={{
-            plannedEvents, getPlannedEvents, addPlannedEvent, removePlannedEvent
-        }}>
+        <PlannedEventContext.Provider
+            value={{
+                plannedEvents,
+                getPlannedEvents,
+                addPlannedEvent,
+                removePlannedEvent,
+                getPlannedEventById,
+                updatePlannedEvent,
+            }}
+        >
             {props.children}
         </PlannedEventContext.Provider>
     )
