@@ -12,27 +12,34 @@ import { MessageProvider } from "./messages/MessageProvider"
 import { FriendList } from "./friends/FriendList"
 import { FriendDetail } from "./friends/FriendDetail"
 import { TaskForm } from "./tasks/TaskForm"
+import { PlannedEventList } from "./plannedEvents/PlannedEventList"
+import { PlannedEventForm } from "./plannedEvents/PlannedEventForm"
 
 export const ApplicationViews = () => {
-  return (
-    <>
+    return (
+        <>
+            <UserProvider>
+                <FriendProvider>
+                    <ArticleProvider>
+                        <PlannedEventProvider>
+                            <Route exact path="/">
+                                <ArticleList />
+                            </Route>
+                        </PlannedEventProvider>
+                    </ArticleProvider>
+                </FriendProvider>
 
-      <UserProvider>
-        <FriendProvider>
-          <ArticleProvider>
-            <PlannedEventProvider>
-              <Route exact path="/">
-                <ArticleList />
-              </Route>
-            </PlannedEventProvider>
-          </ArticleProvider>
-        </FriendProvider>
+                <ArticleProvider>
+                    <Route exact path="/articles/create">
+                        <ArticleForm />
+                    </Route>
+                </ArticleProvider>
 
-        <ArticleProvider>
-          <Route exact path="/articles/create">
-            <ArticleForm />
-          </Route>
-        </ArticleProvider>
+                <FriendProvider>
+                    <Route path="/friends">
+                        {/* Render the component for list of friends */}
+                    </Route>
+                </FriendProvider>
 
         <FriendProvider>
           <Route exact path="/friends">
@@ -48,35 +55,43 @@ export const ApplicationViews = () => {
             </Route>
           </UserProvider>
         </FriendProvider>
+                <MessageProvider>
+                    <FriendProvider>
+                        <Route path="/messages">
+                            {/* Render the component for the messages */}
+                        </Route>
+                    </FriendProvider>
+                </MessageProvider>
 
-        <MessageProvider>
-          <FriendProvider>
-            <Route path="/messages">
-              {/* Render the component for the messages */}
-            </Route>
-          </FriendProvider>
-        </MessageProvider>
+                {/* Render the component for the user's tasks */}
+                <TaskProvider>
+                    <UserProvider>
+                        <Route exact path="/tasks">
+                            <TaskList />
+                        </Route>
+                        <Route exact path="/tasks/create">
+                            <TaskForm />
+                        </Route>
+                    </UserProvider>
+                </TaskProvider>
 
-        {/* Render the component for the user's tasks */}
-        <TaskProvider>
-          <UserProvider>
-            <Route exact path="/tasks">
-              <TaskList />
-            </Route>
-            <Route exact path="/tasks/create">
-              <TaskForm />
-            </Route>
-          </UserProvider>
-        </TaskProvider>
-
-        <FriendProvider>
-          <PlannedEventProvider>
-            <Route path="/plannedEvents">
-              {/* Render the component for the user's events */}
-            </Route>
-          </PlannedEventProvider>
-        </FriendProvider>
-      </UserProvider>
-    </>
-  )
+                <FriendProvider>
+                    <PlannedEventProvider>
+                        <Route exact path="/plannedEvents">
+                            <PlannedEventList />
+                        </Route>
+                        <Route exact path="/plannedEvents/create">
+                            <PlannedEventForm />
+                        </Route>
+                        <Route
+                            exact
+                            path="/plannedEvents/edit/:plannedEventId(\d+)"
+                        >
+                            <PlannedEventForm />
+                        </Route>
+                    </PlannedEventProvider>
+                </FriendProvider>
+            </UserProvider>
+        </>
+    )
 }
