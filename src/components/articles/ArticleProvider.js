@@ -28,6 +28,12 @@ export const ArticleProvider = (props) => {
         }).then(getArticles)
     }
 
+    const removeArticle = id => {
+        return fetch(`http://localhost:8088/articles/${id}`, {
+            method: "DELETE"
+        }).then(getArticles)
+    }
+
     // const updateArticle = (article) => {
     //     return fetch(`http://localhost:8088/articles/${article.id}`, {
     //         method: "PUT",
@@ -44,6 +50,7 @@ export const ArticleProvider = (props) => {
                 articles,
                 getArticles,
                 addArticle,
+                removeArticle
                 // getArticleById,
                 // updateArticle
             }}
