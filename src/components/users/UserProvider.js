@@ -2,24 +2,23 @@ import React, { useState, createContext } from "react"
 
 export const UserContext = createContext()
 
-
 export const UserProvider = (props) => {
-    const [ users, setUsers ] = useState([])
+    const [users, setUsers] = useState([])
 
     const getUsers = () => {
-        return fetch("localhost:8088/users")
-        .then(response => response.json)
-        .then(setUsers)
+        return fetch("http://localhost:8088/users")
+            .then((response) => response.json)
+            .then(setUsers)
     }
 
     return (
-        <UserContext.Provider value={{
-            users, getUsers
-        }}>
+        <UserContext.Provider
+            value={{
+                users,
+                getUsers,
+            }}
+        >
             {props.children}
         </UserContext.Provider>
     )
-
-
-    
 }

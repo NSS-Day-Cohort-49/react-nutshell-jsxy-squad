@@ -7,23 +7,41 @@ export const PlannedEventItem = ({ plannedEvent }) => {
     const { getPlannedEventById, removePlannedEvent } =
         useContext(PlannedEventContext)
 
-    const [event, setPlannedEvent] = useState({})
+    const [, setPlannedEvent] = useState({})
 
     const { plannedEventId } = useParams()
 
     const history = useHistory()
-
-    const handleRemove = () => {
-        removePlannedEvent(event.id).then(() => {
-            history.push("/plannedEvents")
-        })
-    }
 
     useEffect(() => {
         getPlannedEventById(plannedEventId).then((response) => {
             setPlannedEvent(response)
         })
     }, [])
+
+    const customButtons =
+        plannedEvent.userId ===
+        parseInt(sessionStorage.getItem("nutshell_user")) ? (
+            <>
+                <button
+                    onClick={() => {
+                        removePlannedEvent(plannedEvent.id)
+                        history.push("/plannedEvents")
+                    }}
+                >
+                    Delete
+                </button>
+                <button
+                    onClick={() => {
+                        history.push(`/plannedEvents/edit/${plannedEvent.id}`)
+                    }}
+                >
+                    Edit
+                </button>
+            </>
+        ) : (
+            ""
+        )
 
     return (
         <>
@@ -36,14 +54,7 @@ export const PlannedEventItem = ({ plannedEvent }) => {
                 <div className="plannedEvent__user">
                     {plannedEvent.user?.name}
                 </div>
-                <button onClick={handleRemove}>Remove Event</button>
-                <button
-                    onClick={() => {
-                        history.push(`/plannedEvents/edit/${plannedEvent.id}`)
-                    }}
-                >
-                    Edit
-                </button>
+                {customButtons}
             </section>
         </>
     )
