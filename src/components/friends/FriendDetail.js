@@ -14,7 +14,7 @@ export const FriendDetail = () => {
     const handleRemove = () => {
         removeFriend(friend.id)
           .then(() => {
-            history.push("/friend")
+            history.push("/friends")
           })
       }
 

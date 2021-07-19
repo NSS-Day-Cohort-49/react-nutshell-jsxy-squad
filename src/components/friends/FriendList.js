@@ -25,7 +25,7 @@ export const FriendList = () => {
              <div className="friends">
                 {
                     friends.map(friend => {
-                        if (currentUserId === friend.friend){
+                        if (currentUserId === friend.friendId){
                          return <FriendItem key={friend.id} friend={friend} />
                     }})
                   
