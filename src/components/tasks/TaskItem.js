@@ -25,6 +25,10 @@ export const TaskItem = ({ task }) => {
         .then(() => history.push("/tasks"))
     }
 
+    const handleEditTask = () => {
+        history.push(`/tasks/edit/${task.id}`)
+    }
+
     return (
         <section className="task">
             <h3 className="task__name">{task.name}</h3>
@@ -33,6 +37,7 @@ export const TaskItem = ({ task }) => {
             <label for="checkbox">Mark as complete</label>
             <input type="checkbox" id="checkbox" unchecked onChange={handleTaskCheck} />
             <button onClick={handleRemoveTask}>Remove Task</button>
+            <button onClick={handleEditTask}>Edit Task</button>
         </section>
     )
 }
