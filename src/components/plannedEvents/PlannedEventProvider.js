@@ -19,10 +19,10 @@ export const PlannedEventProvider = (props) => {
     }
 
     const addPlannedEvent = (eventObj) => {
-        return fetch("http://localhost:8088/plannedEvents", {
+        return fetch("http://localhost:8088/plannedEvents?_expand=user", {
             method: "POST",
             headers: {
-                "Content-Type:": "application/json",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(eventObj),
         }).then(getPlannedEvents)
