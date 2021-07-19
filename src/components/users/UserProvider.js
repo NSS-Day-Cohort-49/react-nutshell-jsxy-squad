@@ -7,8 +7,8 @@ export const UserProvider = (props) => {
 
     const getUsers = () => {
         return fetch("http://localhost:8088/users")
-            .then((response) => response.json)
-            .then(setUsers)
+        .then(response => response.json())
+        .then(setUsers)
     }
 
     return (
