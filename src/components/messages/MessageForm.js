@@ -30,6 +30,11 @@ export const MessageForm = () => {
         }
 
         addMessage(newMessage)
+        .then(setMessage({
+            body: "",
+            userId: 0,
+            recipientId: 0
+        }))
     }
 
     return (
