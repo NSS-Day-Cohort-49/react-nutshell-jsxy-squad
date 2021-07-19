@@ -15,6 +15,7 @@ export const FriendList = () => {
     const history = useHistory();
     const {friendId} = useParams();
     const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
+    
 
 
 
