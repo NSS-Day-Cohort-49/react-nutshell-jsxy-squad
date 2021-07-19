@@ -7,10 +7,10 @@ export const FriendItem = ({ friend }) => {
     
     const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
 
-    /* useEffect(()=> {
+     /* useEffect(()=> {
         getUsers()
     }, [])
- */
+  */
 
     const friendUser = users.find(user => user.id === friend.friendId)
 
