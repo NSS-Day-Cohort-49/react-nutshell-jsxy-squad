@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import './Tasks.css'
 
 export const TaskItem = ({ task }) => {
-    const {removeTask} = useContext(TaskContext)
+    const {removeTask, updateTask} = useContext(TaskContext)
     const history = useHistory()
 
     const handleRemoveTask = () => {
@@ -14,13 +14,24 @@ export const TaskItem = ({ task }) => {
         })
     }
 
+    const handleTaskCheck = () => {
+        updateTask({
+            id: task.id,
+            name: task.name,
+            completeBy: task.completeBy,
+            isComplete: true,
+            userId: task.userId
+        })
+        .then(() => history.push("/tasks"))
+    }
+
     return (
         <section className="task">
             <h3 className="task__name">{task.name}</h3>
             <div className="task__submittingUser">Submitted by: {task.user?.name}</div>
             <div className="task__completeBy">Est Completion Date: {task.completeBy}</div>
             <label for="checkbox">Mark as complete</label>
-            <input type="checkbox" id="checkbox" unchecked />
+            <input type="checkbox" id="checkbox" unchecked onChange={handleTaskCheck} />
             <button onClick={handleRemoveTask}>Remove Task</button>
         </section>
     )
