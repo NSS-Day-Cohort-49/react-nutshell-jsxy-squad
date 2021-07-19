@@ -1,8 +1,9 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "react-router-dom"
 
 export const FriendItem = ({ friend }) => {
-    
+    const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
+
 
     return(
     <section className="friend">

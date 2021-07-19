@@ -26,6 +26,7 @@ export const FriendDetail = () => {
         })
         }, [])
 
+    
     return(
         <section className="friend">
         <h3 className="friend__name">{friend.user?.name}</h3>
