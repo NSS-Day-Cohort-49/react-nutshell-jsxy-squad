@@ -5,12 +5,19 @@ import "./Articles.css"
 export const ArticleItem = ({ article }) => {
     const { removeArticle } = useContext(ArticleContext)
     const friendClass = article.userId === parseInt(sessionStorage.getItem("nutshell_user")) ? "" : "friendArticle"
+
+    let deleteButton
+    if (article.userId === parseInt(sessionStorage.getItem("nutshell_user"))) {
+        deleteButton = <button onClick={() => removeArticle(article.id)}>
+                            Delete Article
+                    </button>
+    }
     
     return (
         <section className={`article ${friendClass}`}>
             <a className="article__title" href={article.articleURL}>{article.title}</a>
             <div className="article__synopsis">{article.synopsis}</div>
-            <button onClick={() => {removeArticle(article.id)}}>Delete Article</button>
+            {deleteButton}
         </section>
     )
 }
