@@ -10,6 +10,7 @@ export const FriendProvider = (props) => {
             res.json()
         ) // note we don't set anything on state here. Why?
     }
+    
 
     const getFriends = () => {
         return fetch("http://localhost:8088/friends?_expand=user")

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { FriendContext } from "./FriendProvider"
 import { useParams, useHistory } from "react-router-dom"
+import { UserContext } from "../users/UserProvider"
 
 
 export const FriendDetail = () => {

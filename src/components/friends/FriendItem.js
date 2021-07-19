@@ -1,8 +1,19 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
+import { UserContext } from "../users/UserProvider"
 
 export const FriendItem = ({ friend }) => {
+    const { users, getUsers } = useContext(UserContext)
+    
     const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
+
+    /* useEffect(()=> {
+        getUsers()
+    }, [])
+ */
+
+    const friendUser = users.find(user => user.id === friend.friendId)
+
 
 
     return(
