@@ -8,10 +8,10 @@ export const PlannedEventForm = () => {
         useContext(PlannedEventContext)
     // const { users, getUsers } = useContext(UserContext)
     const [plannedEvent, setPlannedEvent] = useState({
-        name: "",
-        date: "",
-        location: "",
-        userId: 0,
+        // name: "",
+        // date: "",
+        // location: "",
+        // userId: 0,
     })
 
     const [isLoading, setIsLoading] = useState(true)
@@ -40,6 +40,7 @@ export const PlannedEventForm = () => {
 
     const handleClickSaveEvent = (event) => {
         event.preventDefault()
+        const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
 
         if (plannedEventId === 0) {
             window.alert("Please select an Event")
@@ -51,14 +52,14 @@ export const PlannedEventForm = () => {
                     name: plannedEvent.name,
                     date: plannedEvent.date,
                     location: plannedEvent.location,
-                    userId: plannedEvent.userId,
+                    userId: currentUserId,
                 }).then(() => history.push("/plannedEvents"))
             } else {
                 addPlannedEvent({
                     name: plannedEvent.name,
                     date: plannedEvent.date,
                     location: plannedEvent.location,
-                    userId: plannedEvent.userId,
+                    userId: currentUserId,
                 }).then(() => history.push("/plannedEvents"))
             }
         }
