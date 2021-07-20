@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router"
 import { MessageContext } from "./MessageProvider"
+import { UserContext } from "../users/UserProvider"
 import "./Messages.css"
 
 export const MessageForm = () => {
     const { addMessage, updateMessage, getMessageById } = useContext(MessageContext)
+    const { users, getUsers } = useContext(UserContext)
     const history = useHistory()
     const { messageId } = useParams()
     const [ isLoading, setIsLoading ] = useState(true)
@@ -26,12 +28,31 @@ export const MessageForm = () => {
         recipientId: 0
     })
 
+    const [ privateDialog, setPrivateDialog] = useState(false)
+    const [ recipientId, setRecipientId ] = useState(0)
+
+    const placeholderString = recipientId ? "Message is now private" : "Type '@' to make message private"
+
     const handleControlledInputChange = event => {
         const newMessage = {...message}
         newMessage[event.target.id] = event.target.value
 
+        if(newMessage.body === "@") {
+            setPrivateDialog(true)
+        }
+
         setMessage(newMessage)
     }
+
+    const handleDialogClose = () => {
+        setPrivateDialog(false)
+
+        setMessage({
+            body: "",
+            userId: 0,
+            recipientId: 0
+        })
+    } 
 
     const handleClickSendMessage = event => {
         event.preventDefault()
@@ -50,10 +71,11 @@ export const MessageForm = () => {
             const newMessage = {
                 body: message.body,
                 userId: currentUserId,
-                recipientId: 0
+                recipientId: recipientId
             }
     
             addMessage(newMessage)
+            .then(setRecipientId(0))
             .then(setMessage({
                 body: "",
                 userId: 0,
@@ -63,15 +85,26 @@ export const MessageForm = () => {
     }
 
     return (
-        <form className="messageForm">
-            <fieldset>
-                <div className="form-group">
-                <input type="text" id="body" required autoFocus className="form-control" placeholder="Type @+user name to send private message" value={message.body} onChange={handleControlledInputChange} />
-                </div>
-            </fieldset>
-            <button disabled ={isLoading} onClick={handleClickSendMessage}>
-                {messageId ? "Update Message" : "Send Message"}
-            </button>
-        </form>
+        <>
+            <dialog className="privateDialog" open={privateDialog}>
+                <div>Who would you like to send this private message?</div>
+                    {users.map(user => {
+                        return <label className="radio-group">
+                            <input type="radio" value={user.id} onChange={() => setRecipientId(user.id)}/>{user.name}
+                        </label>
+                    })}
+                <button onClick={handleDialogClose}>Close</button>
+            </dialog>
+            <form className="messageForm">
+                <fieldset>
+                    <div className="form-group">
+                    <input type="text" id="body" required autoFocus className="form-control" placeholder={placeholderString} value={message.body} onChange={handleControlledInputChange} />
+                    </div>
+                </fieldset>
+                <button disabled ={isLoading} onClick={handleClickSendMessage}>
+                    {messageId ? "Update Message" : "Send Message"}
+                </button>
+            </form>
+        </>
     )
 }
