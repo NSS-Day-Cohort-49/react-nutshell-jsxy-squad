@@ -12,6 +12,10 @@ export const FriendList = () => {
         getFriends()
     }, [])
 
+    
+
+
+
     const history = useHistory();
     const {friendId} = useParams();
     const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
@@ -28,7 +32,7 @@ export const FriendList = () => {
                 {
                     friends.map(friend => {
                         if (currentUserId === friend.friendId){
-                         return <FriendItem key={friend.id} friend={friend} />
+                         return <FriendItem key={friend.user?.id} friend={friend} />
                     }})
                   
                 }

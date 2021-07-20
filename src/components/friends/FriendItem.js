@@ -7,14 +7,15 @@ export const FriendItem = ({ friend }) => {
     
     const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
 
-     /* useEffect(()=> {
+      useEffect(()=> {
         getUsers()
     }, [])
-  */
+  
 
-    const friendUser = users.find(user => user.id === friend.friendId)
+    const friendUser = users.find(user => user.id === friend.userId)
 
 
+    console.log("this is our test",friend.id)
 
     return(
     <section className="friend">

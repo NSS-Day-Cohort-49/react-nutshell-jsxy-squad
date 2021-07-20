@@ -6,8 +6,10 @@ import { UserContext } from "../users/UserProvider"
 
 export const FriendDetail = () => {
     const { getFriendById, removeFriend, addFriend } = useContext(FriendContext)
+    const { getUserId } = useContext(UserContext)
 
     const [friend, setFriend] = useState({})
+    const [user, setUser] = useState({})
 
     const {friendId} = useParams();  
     const history = useHistory();
