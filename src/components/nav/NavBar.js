@@ -31,7 +31,9 @@ export const NavBar = (props) => {
                         Events
                     </Link>
                 </li>
-                <li className="nav-item">
+            </ul>
+            <ul className="nav nav-pills nav-fill">
+                <li className="nav-item-logout">
                     <Link
                         className="nav-link"
                         to="/login"

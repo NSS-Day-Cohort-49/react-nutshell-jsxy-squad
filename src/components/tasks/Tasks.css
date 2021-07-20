@@ -14,5 +14,8 @@
     white-space: break-spaces;
 }
 .task__description {
-    /* flex: auto; */
+    /* width: max-content; */
+}
+.task__name {
+    width: max-content;
 }
