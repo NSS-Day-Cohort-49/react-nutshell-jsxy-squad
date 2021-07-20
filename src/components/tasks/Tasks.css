@@ -1,12 +1,18 @@
 .task__buttons{
     display: flex;
     flex-direction: column;
+    padding: 0px 585px 0px 45px;
+    min-width: fit-content;
 }
 .task {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 15px 25px;
+    
 }
 .task__checkboxes {
     white-space: break-spaces;
+}
+.task__description {
+    /* flex: auto; */
 }
