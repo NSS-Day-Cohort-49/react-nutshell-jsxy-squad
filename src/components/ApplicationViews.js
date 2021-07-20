@@ -24,15 +24,15 @@ export const ApplicationViews = () => {
                             <Route exact path="/">
                                 <ArticleList />
                             </Route>
+                            <Route exact path="/articles/create">
+                                <ArticleForm />
+                            </Route>
+                            <Route exact path="/articles/edit/:articleId(\d+)">
+                                <ArticleForm />
+                            </Route>
                         </PlannedEventProvider>
                     </ArticleProvider>
                 </FriendProvider>
-
-                <ArticleProvider>
-                    <Route exact path="/articles/create">
-                        <ArticleForm />
-                    </Route>
-                </ArticleProvider>
 
                 <FriendProvider>
                     <Route path="/friends">
