@@ -12,7 +12,7 @@ export const FriendItem = ({ friend }) => {
     }, [])
   
 
-    const friendUser = users.find(user => user.id === friend.userId)
+    /* const friendUser = users.find(user => user.id === friend.id) */
     let jackieboy = null
 
     if (friend.id !== currentUserId){
@@ -21,14 +21,14 @@ export const FriendItem = ({ friend }) => {
 
     const napfriend = friend.friends?.map(friender => {
        
-            return friend.name, friender
+            return friender
     })
+
+    const friendUser = users.find(user => user.id === friend.id)
 
     console.log(napfriend)
 
 
-
-    /* console.log("this is our test",friend.id) */
 
     return(
     <section className="friend">
