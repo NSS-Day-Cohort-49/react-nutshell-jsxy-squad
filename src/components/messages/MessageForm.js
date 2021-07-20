@@ -90,9 +90,12 @@ export const MessageForm = () => {
                 <div>Who would you like to send this private message?</div>
                     {users.map(user => {
                         return <label className="radio-group">
-                            <input type="radio" value={user.id} onChange={() => setRecipientId(user.id)}/>{user.name}
+                            <input type="radio" value={user.id} onChange={() => setRecipientId(user.id)} />{user.name}
                         </label>
                     })}
+                    <label className="radio-group">
+                        <input type="radio" value="public" onChange={() => setRecipientId(0)} />Public
+                    </label>
                 <button onClick={handleDialogClose}>Close</button>
             </dialog>
             <form className="messageForm">
@@ -101,7 +104,7 @@ export const MessageForm = () => {
                     <input type="text" id="body" required autoFocus className="form-control" placeholder={placeholderString} value={message.body} onChange={handleControlledInputChange} />
                     </div>
                 </fieldset>
-                <button disabled ={isLoading} onClick={handleClickSendMessage}>
+                <button onClick={handleClickSendMessage}>
                     {messageId ? "Update Message" : "Send Message"}
                 </button>
             </form>
