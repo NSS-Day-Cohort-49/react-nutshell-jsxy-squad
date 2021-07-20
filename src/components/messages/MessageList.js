@@ -11,11 +11,17 @@ export const MessageList = () => {
         getMessages()
     }, [])
 
+    const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
+
+    const filteredMessages = messages.filter(message => {
+        return message.recipientId === currentUserId || message.recipientId === 0 || message.userId === currentUserId
+    })
+
     return (
         <>
             <div className="messages">
                 {
-                    messages.map(message => {
+                    filteredMessages.map(message => {
                         return <MessageItem key={message.id} message={message} />
                     })
                 }

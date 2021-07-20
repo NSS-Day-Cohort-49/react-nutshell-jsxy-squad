@@ -13,11 +13,23 @@ export const MessageItem = ({ message }) => {
         getUsers()
     }, [])
 
-
+    const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
     const sender = users.find(user => user.id === message.userId)
-    console.log(users)
+    let senderString = `${sender?.name} says`
+    if (sender?.id === currentUserId) {
+        senderString = "You say"
+    }
+
     const privateMessage = message.recipientId ? "privateMessage" : ""
-    const toYouString = message.recipientId ? " to you" : ""
+    let privateString = ""
+    let privateRecipient = users.find(user => user.id === message.recipientId)
+    if (currentUserId === message.recipientId) {
+        privateString = " to you"
+    }
+    if (message.recipientId && currentUserId === message.userId) {
+        privateString = ` to ${privateRecipient?.name}`
+    }
+
     let userButtons
     if (message.userId === parseInt(sessionStorage.getItem("nutshell_user"))) {
         userButtons = <>
@@ -33,7 +45,7 @@ export const MessageItem = ({ message }) => {
     return (
         <>
             <section className={`message ${privateMessage}`}>
-                <div className="message__sender">{sender?.name} says{toYouString}:</div>
+                <div className="message__sender">{senderString} {privateString}:</div>
                 <div className="message__body">{message.body}</div>
                 {userButtons}
             </section>
