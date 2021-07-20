@@ -1,25 +1,17 @@
 import React, { useContext, useState, useEffect } from "react"
-// import { UserContext } from "../users/UserProvider"
 import { PlannedEventContext } from "./PlannedEventProvider"
 import { useHistory, useParams } from "react-router-dom"
 
 export const PlannedEventForm = () => {
     const { addPlannedEvent, updatePlannedEvent, getPlannedEventById } =
         useContext(PlannedEventContext)
-    // const { users, getUsers } = useContext(UserContext)
-    const [plannedEvent, setPlannedEvent] = useState({
-        // name: "",
-        // date: "",
-        // location: "",
-        // userId: 0,
-    })
+    const [plannedEvent, setPlannedEvent] = useState({})
 
     const [isLoading, setIsLoading] = useState(true)
     const { plannedEventId } = useParams()
     const history = useHistory()
 
     useEffect(() => {
-        // getUsers().then(() => {
         if (plannedEventId) {
             getPlannedEventById(plannedEventId).then((event) => {
                 setPlannedEvent(event)
@@ -28,7 +20,6 @@ export const PlannedEventForm = () => {
         } else {
             setIsLoading(false)
         }
-        // })
     }, [])
 
     const handleControlledInputChange = (event) => {
@@ -123,6 +114,3 @@ export const PlannedEventForm = () => {
         </form>
     )
 }
-
-// const userId = parseInt(plannedEvent.userId)
-// const loggedInUser = sessionStorage.getItem.value
