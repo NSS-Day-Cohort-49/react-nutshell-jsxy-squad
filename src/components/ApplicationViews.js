@@ -10,6 +10,7 @@ import { TaskProvider } from "./tasks/TaskProvider"
 import { TaskList } from "./tasks/TaskList"
 import { MessageProvider } from "./messages/MessageProvider"
 import { MessageList } from "./messages/MessageList"
+import { MessageForm } from "./messages/MessageForm"
 import { TaskForm } from "./tasks/TaskForm"
 import { PlannedEventList } from "./plannedEvents/PlannedEventList"
 import { PlannedEventForm } from "./plannedEvents/PlannedEventForm"
@@ -24,15 +25,15 @@ export const ApplicationViews = () => {
                             <Route exact path="/">
                                 <ArticleList />
                             </Route>
+                            <Route exact path="/articles/create">
+                                <ArticleForm />
+                            </Route>
+                            <Route exact path="/articles/edit/:articleId(\d+)">
+                                <ArticleForm />
+                            </Route>
                         </PlannedEventProvider>
                     </ArticleProvider>
                 </FriendProvider>
-
-                <ArticleProvider>
-                    <Route exact path="/articles/create">
-                        <ArticleForm />
-                    </Route>
-                </ArticleProvider>
 
                 <FriendProvider>
                     <Route path="/friends">
@@ -42,8 +43,11 @@ export const ApplicationViews = () => {
 
                 <MessageProvider>
                     <FriendProvider>
-                        <Route path="/messages">
+                        <Route exact path="/messages">
                             <MessageList />
+                        </Route>
+                        <Route exact path="/messages/edit/:messageId(\d+)">
+                            <MessageForm />
                         </Route>
                     </FriendProvider>
                 </MessageProvider>
