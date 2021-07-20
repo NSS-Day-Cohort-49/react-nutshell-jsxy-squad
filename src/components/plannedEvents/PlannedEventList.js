@@ -13,6 +13,11 @@ export const PlannedEventList = () => {
 
     const history = useHistory()
 
+    // filter by input date in string format
+    let filteredEvents = plannedEvents.sort(
+        (a, b) => Date.parse(new Date(a.date)) - Date.parse(new Date(b.date))
+    )
+
     return (
         <div className="plannedEvents">
             <h2>Events</h2>
@@ -23,7 +28,7 @@ export const PlannedEventList = () => {
             >
                 New Event
             </button>
-            {plannedEvents.map((plannedEvent) => {
+            {filteredEvents.map((plannedEvent) => {
                 return (
                     <PlannedEventItem
                         key={plannedEvent.id}
