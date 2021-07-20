@@ -14,6 +14,7 @@ export const PlannedEventList = () => {
     const history = useHistory()
 
     // filter by input date in string format
+
     let filteredEvents = plannedEvents.sort(
         (a, b) => Date.parse(new Date(a.date)) - Date.parse(new Date(b.date))
     )
