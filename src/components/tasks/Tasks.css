@@ -1,21 +1,24 @@
 .task__buttons{
-    display: flex;
-    flex-direction: column;
     padding: 0px 585px 0px 45px;
-    min-width: fit-content;
+    grid-column-start: 2;
+    width: max-content;
 }
 .task {
-    display: flex;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: 20% 20% 20%;
     padding: 15px 25px;
+    border: solid white 20px;
+    background-color: lightgray;
     
 }
 .task__checkboxes {
     white-space: break-spaces;
 }
 .task__description {
-    /* width: max-content; */
+    grid-column-start: 1;
+    grid-column-end: 2;
+    word-wrap: break-word;
 }
-.task__name {
-    width: max-content;
+.task__head {
+    padding: 0px 25px;
 }
