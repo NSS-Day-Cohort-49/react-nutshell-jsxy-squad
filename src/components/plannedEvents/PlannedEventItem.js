@@ -45,9 +45,9 @@ export const PlannedEventItem = ({ plannedEvent }) => {
 
     return (
         <>
-            <section className="plannedEvent">
+            <article className="plannedEvent">
                 <div className="event__description">
-                    <h3 className="plannedEvent__name">{plannedEvent.name}</h3>
+                    <div className="plannedEvent__name">{plannedEvent.name}</div>
                     <div className="plannedEvent__location">
                         {plannedEvent.location}
                     </div>
@@ -59,7 +59,7 @@ export const PlannedEventItem = ({ plannedEvent }) => {
                 <div className="event__buttons">
                     {customButtons}
                 </div>
-            </section>
+            </article>
         </>
     )
 }
