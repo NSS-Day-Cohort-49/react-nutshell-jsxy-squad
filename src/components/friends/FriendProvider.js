@@ -6,16 +6,18 @@ export const FriendProvider = (props) => {
     const [friends, setFriends] = useState([])
 
     const getFriendById = (id) => {
-        return fetch(`http://localhost:8088/friends/${id}`).then((res) =>
+        return fetch(`http://localhost:8088/friends/${id}?_expand=user`).then((res) =>
             res.json()
         ) // note we don't set anything on state here. Why?
     }
 
-    const getFriends = () => {
-        return fetch("http://localhost:8088/friends")
+    
+
+     const getFriends = () => {
+        return fetch("http://localhost:8088/friends?_expand=user")
             .then((res) => res.json())
             .then(setFriends)
-    }
+    } 
     const addFriend = (friendObj) => {
         return fetch("http://localhost:8088/friends", {
             method: "POST",
@@ -27,13 +29,20 @@ export const FriendProvider = (props) => {
     }
 
     const updateFriend = (friend) => {
-        return fetch(`http://localhost:8088/friends/${friend.id}`, {
+        return fetch(`http://localhost:8088/friends/${friend.id}?_expand=user`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(friend),
         }).then(getFriends)
+    }
+
+    const removeFriend = friendId => {
+        return fetch(`http://localhost:8088/friends/${friendId}?_expand=user`, {
+            method: "DELETE"
+        })
+            .then(getFriends)
     }
 
     return (
@@ -44,6 +53,7 @@ export const FriendProvider = (props) => {
                 addFriend,
                 getFriendById,
                 updateFriend,
+                removeFriend,
             }}
         >
             {props.children}
