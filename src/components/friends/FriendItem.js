@@ -13,6 +13,19 @@ export const FriendItem = ({ friend }) => {
   
 
     const friendUser = users.find(user => user.id === friend.userId)
+    let jackieboy = null
+
+    if (friend.id !== currentUserId){
+        jackieboy = friend.name
+    }
+
+    const napfriend = friend.friends?.map(friender => {
+       
+            return friend.name, friender
+    })
+
+    console.log(napfriend)
+
 
 
     /* console.log("this is our test",friend.id) */
@@ -21,7 +34,9 @@ export const FriendItem = ({ friend }) => {
     <section className="friend">
         <h3 className="friend__name">
         <Link to={`/friends/detail/${friend.id}`}>
-            { friend.name }
+            { 
+               friend.name
+            }
         </Link>
         </h3>
     </section>)

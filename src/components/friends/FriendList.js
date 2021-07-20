@@ -26,7 +26,7 @@ export const FriendList = () => {
 
 
 
-    /* const filterfriend = friends.map(friend => {
+    const filterfriend = friends.map(friend => {
         if (friend.id === currentUserId) {
             return friend
         }
@@ -34,16 +34,16 @@ export const FriendList = () => {
 
     const findFrienders = friends.filter((friender)=>{
         if(friender.friendId === currentUserId){
-            return friender
+            return friender.id
         } 
             
         })
 
-     const mapFriends = friends.users?.map(friender => {
-         return friender
+     const mapFriends = users.friends?.map(friender => {
+         return friender.userId
      }) 
 
-     console.log(mapFriends)  */
+     /* console.log(findFrienders)  */
     
     return (
         <>
@@ -52,19 +52,10 @@ export const FriendList = () => {
              <div className="friends">
                 {
                     users.map(user => {
-
                          return <FriendItem key={user.id} friend={user} />
                     })
                   
                 }
-                {/* {
-                        friends.users?.map(user => {
-                            console.log(user.id)
-                            return (
-                                <FriendItem key={user.id} friend={user} />
-                            )
-                        })
-                    } */}
              </div>
          </>
 
