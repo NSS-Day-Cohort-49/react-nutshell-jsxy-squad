@@ -1,11 +1,24 @@
-import React, { useState, useContext } from "react"
-import { useHistory } from "react-router-dom"
+import React, { useState, useContext, useEffect } from "react"
+import { useHistory, useParams } from "react-router-dom"
 import { ArticleContext } from "./ArticleProvider"
 import "./Articles.css"
 
 export const ArticleForm = () => {
-    const { addArticle } = useContext(ArticleContext)
+    const { addArticle, updateArticle, getArticleById } = useContext(ArticleContext)
     const history = useHistory()
+    const { articleId } = useParams()
+    const [ isLoading, setIsLoading ] = useState(true)
+
+    useEffect(() => {
+        if (articleId) {
+            getArticleById(articleId).then(event => {
+                setArticle(event)
+                setIsLoading(false)
+            })
+        } else {
+            setIsLoading(false)
+        }
+    }, [])
 
     const [ article, setArticle] = useState({
         title: "",
@@ -27,16 +40,28 @@ export const ArticleForm = () => {
 
         const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
 
-        const newArticle = {
-            title: article.title,
-            synopsis: article.synopsis,
-            articleURL: article.articleURL,
-            userId: currentUserId,
-            timestamp: Date.now()
+        setIsLoading(true)
+        if (articleId) {
+            updateArticle({
+                id: article.id,
+                title: article.title,
+                synopsis: article.synopsis,
+                articleURL: article.articleURL,
+                timestamp: article.timestamp,
+                userId: currentUserId
+            }).then(() => history.push("/"))
+        } else {
+            const newArticle = {
+                title: article.title,
+                synopsis: article.synopsis,
+                articleURL: article.articleURL,
+                userId: currentUserId,
+                timestamp: Date.now()
+            }
+    
+            addArticle(newArticle)
+            .then(() => history.push("/"))
         }
-
-        addArticle(newArticle)
-        .then(() => history.push("/"))
     }
 
     
@@ -62,8 +87,8 @@ export const ArticleForm = () => {
                     <input type="text" id="articleURL" required autoFocus className="form-control" placeholder="Paste URL here" value={article.articleURL} onChange={handleControlledInputChange} />
                 </div>
             </fieldset>
-            <button onClick={handleClickSaveArticle}>
-                Save Article
+            <button disabled={isLoading} onClick={handleClickSaveArticle}>
+                {articleId ? "Update Article" : "Save Article"}
             </button>
         </form>
     )
