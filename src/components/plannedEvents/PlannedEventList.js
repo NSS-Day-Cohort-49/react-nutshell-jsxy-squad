@@ -20,15 +20,17 @@ export const PlannedEventList = () => {
     )
 
     return (
-        <div className="plannedEvents">
-            <h2>Events</h2>
-            <button
-                onClick={() => {
-                    history.push("/plannedEvents/create")
-                }}
-            >
-                New Event
-            </button>
+        <div className="event__head">
+            <div className="plannedEvents">
+                <h2>Events</h2>
+                <button
+                    onClick={() => {
+                        history.push("/plannedEvents/create")
+                    }}
+                >
+                    New Event
+                </button>
+            </div>
             {filteredEvents.map((plannedEvent) => {
                 return (
                     <PlannedEventItem

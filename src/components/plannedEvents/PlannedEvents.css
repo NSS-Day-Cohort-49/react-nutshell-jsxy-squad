@@ -1,12 +1,23 @@
 .plannedEvents {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  padding: 0px 25px;
 }
 .plannedEvent {
-    flex-basis: 20%;
-    margin: 1em;
-    padding: 1em;
-    border: 1px solid goldenrod;
+  display: grid;
+  grid-template-columns: 20% 20% 20%;
+  padding: 15px 25px;
+  margin: 20px;
+  background-color: lightgray;
+}
+.event__buttons {
+    padding: 0px 585px 0px 45px;
+    grid-column-start: 3;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.event__discription {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    word-wrap: break-word;
 }
