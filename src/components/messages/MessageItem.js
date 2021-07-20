@@ -16,7 +16,7 @@ export const MessageItem = ({ message }) => {
     const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
     const sender = users.find(user => user.id === message.userId)
     let senderString = `${sender?.name} says`
-    if (sender.id === currentUserId) {
+    if (sender?.id === currentUserId) {
         senderString = "You say"
     }
 
