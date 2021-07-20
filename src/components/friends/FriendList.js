@@ -12,6 +12,10 @@ export const FriendList = () => {
         getFriends()
     }, [])
 
+    useEffect(()=> {
+        getUsers()
+    }, [])
+
     
 
 
@@ -20,9 +24,26 @@ export const FriendList = () => {
     const {friendId} = useParams();
     const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
 
-    const friendsMap = friends.map(friend => {
-        return <FriendItem key={friend.id} friend={friend} />
+
+
+    /* const filterfriend = friends.map(friend => {
+        if (friend.id === currentUserId) {
+            return friend
+        }
     })
+
+    const findFrienders = friends.filter((friender)=>{
+        if(friender.friendId === currentUserId){
+            return friender
+        } 
+            
+        })
+
+     const mapFriends = friends.users?.map(friender => {
+         return friender
+     }) 
+
+     console.log(mapFriends)  */
     
     return (
         <>
@@ -30,12 +51,20 @@ export const FriendList = () => {
 
              <div className="friends">
                 {
-                    friends.map(friend => {
-                        if (currentUserId === friend.friendId){
-                         return <FriendItem key={friend.user?.id} friend={friend} />
-                    }})
+                    users.map(user => {
+
+                         return <FriendItem key={user.id} friend={user} />
+                    })
                   
                 }
+                {/* {
+                        friends.users?.map(user => {
+                            console.log(user.id)
+                            return (
+                                <FriendItem key={user.id} friend={user} />
+                            )
+                        })
+                    } */}
              </div>
          </>
 
