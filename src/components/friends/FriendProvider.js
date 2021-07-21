@@ -4,14 +4,13 @@ export const FriendContext = createContext()
 
 export const FriendProvider = (props) => {
     const [friends, setFriends] = useState([])
+    const [searchTerms, setSearchTerms] = useState("");
 
     const getFriendById = (id) => {
         return fetch(`http://localhost:8088/friends/${id}?_expand=user`).then((res) =>
             res.json()
         ) // note we don't set anything on state here. Why?
     }
-
-    
 
      const getFriends = () => {
         return fetch("http://localhost:8088/friends?_expand=user")
@@ -54,6 +53,8 @@ export const FriendProvider = (props) => {
                 getFriendById,
                 updateFriend,
                 removeFriend,
+                searchTerms,
+                setSearchTerms
             }}
         >
             {props.children}
