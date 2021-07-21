@@ -25,6 +25,7 @@ export const UserList = () => {
         getUsers()
     }, [])
 
+    const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
     
     return (
         <>
@@ -33,9 +34,9 @@ export const UserList = () => {
              <div className="users">
                 {
                     filteredUsers.map(user => {
-
+                        if(currentUserId !== user.id){
                        return <UserItem key={user.id} user={user} />
-                    })
+                    }})
                   
                 }
              </div>

@@ -5,11 +5,20 @@ import "./PlannedEvents.css"
 import { useHistory } from "react-router-dom"
 
 export const PlannedEventList = () => {
-    const { plannedEvents, getPlannedEvents } = useContext(PlannedEventContext)
+    const { plannedEvents, getPlannedEvents, weather, getWeather } = useContext(PlannedEventContext)
 
     useEffect(() => {
         getPlannedEvents()
     }, [])
+
+    useEffect(() => {
+        getWeather()
+    }, [])
+
+    console.log(weather)
+
+    const fTemp = (1.8*(weather.main?.temp - 273) + 32)
+
 
     const history = useHistory()
 
@@ -30,6 +39,7 @@ export const PlannedEventList = () => {
                 >
                     New Event
                 </button>
+                <h6> current temperature is {Math.round(fTemp)}</h6>
             </div>
             {filteredEvents.map((plannedEvent) => {
                 return (
