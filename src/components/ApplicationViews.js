@@ -16,6 +16,9 @@ import { MessageForm } from "./messages/MessageForm"
 import { TaskForm } from "./tasks/TaskForm"
 import { PlannedEventList } from "./plannedEvents/PlannedEventList"
 import { PlannedEventForm } from "./plannedEvents/PlannedEventForm"
+import { FriendSearch } from "./friends/FriendSearch"
+import { UserList } from "./users/UserList"
+import { UserSearch } from "./users/UserSearch"
 
 export const ApplicationViews = () => {
     return (
@@ -37,6 +40,7 @@ export const ApplicationViews = () => {
                     </ArticleProvider>
                 </FriendProvider>
 
+
                 <FriendProvider>
                     <Route path="/friends">
                         {/* Render the component for list of friends */}
@@ -45,6 +49,7 @@ export const ApplicationViews = () => {
 
         <FriendProvider>
           <Route exact path="/friends">
+              <FriendSearch />
               <FriendList />
             {/* Render the component for list of friends */}
           </Route>
@@ -100,6 +105,13 @@ export const ApplicationViews = () => {
                     </PlannedEventProvider>
                 </FriendProvider>
             </UserProvider>
+
+            <UserProvider>
+            <Route exact path="/users">
+                <UserSearch />
+                <UserList />
+            </Route>
+          </UserProvider>
         </>
     )
 }

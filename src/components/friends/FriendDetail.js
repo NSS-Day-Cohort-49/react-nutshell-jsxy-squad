@@ -18,8 +18,6 @@ export const FriendDetail = () => {
     let findUser = friends.find(friend => friend.currentUserId === currentUser  &&  friend.userId === parseInt(friendId))
     const foundUser = findUser?.id
 
-    console.log(foundUser)
-
       useEffect(()=> {
         getFriends()
     }, [])

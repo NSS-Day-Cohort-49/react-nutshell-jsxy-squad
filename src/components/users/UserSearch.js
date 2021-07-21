@@ -1,8 +1,8 @@
 import React, { useContext } from "react"
-import { FriendContext } from "./FriendProvider"
+import { UserContext } from "./UserProvider"
 
-export const FriendSearch = () => {
-  const { setSearchTerms } = useContext(FriendContext)
+export const UserSearch = () => {
+  const { setSearchTerms } = useContext(UserContext)
 
   return (
     <>
@@ -10,7 +10,7 @@ export const FriendSearch = () => {
       <input type="text"
         className="input--wide"
         onKeyUp={(event) => setSearchTerms(event.target.value)}
-        placeholder="Find a current friend!" />
+        placeholder="Find a new friend!" />
     </>
   )
 }

@@ -1,29 +1,22 @@
 import React, { useState, useContext, useEffect } from "react"
-import { useHistory, useParams } from 'react-router-dom';
 import { FriendItem } from "./FriendItem";
 import { FriendContext } from "./FriendProvider";
-import { UserContext } from "../users/UserProvider";
+import { Link } from "react-router-dom"
 
 export const FriendList = () => {
     const { getFriends, removeFriend, friends, searchTerms } = useContext(FriendContext)
-    const { users, getUsers} = useContext(UserContext)
-    const [filteredUsers, setFiltered] = useState([]);
+    const [filteredFriends, setFiltered] = useState([]);
 
 
-    useEffect(()=> {
-        getUsers()
-    }, [])
 
     useEffect(() => {
         if (searchTerms !== "") {
-          // If the search field is not blank, display matching users
-          const subset = users.filter(user => user.name.toLowerCase().includes(searchTerms))
+          const subset = friends.filter(friend => friend.user?.name.toLowerCase().includes(searchTerms))
           setFiltered(subset)
         } else {
-          // If the search field is blank, display all users
-          setFiltered(users)
+          setFiltered(friends)
         }
-      }, [searchTerms, users])
+      }, [searchTerms, friends])
 
 
     useEffect(()=> {
@@ -35,11 +28,14 @@ export const FriendList = () => {
     
     return (
         <>
+            <Link className="nav-link" to="/users">
+                        Add a friend
+            </Link>
             <h1>Friends</h1>
 
              <div className="friends">
                 {
-                    friends.map(friend => {
+                    filteredFriends.map(friend => {
                         if(currentUserId === friend.currentUserId){
                          return <FriendItem key={friend.id} friend={friend} />
                     }})
