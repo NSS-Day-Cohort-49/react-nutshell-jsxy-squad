@@ -33,3 +33,32 @@
 textarea.form-control{
     width: 40em;
 }
+
+/* Dialog window styling */
+
+.privateDialog {
+    position: fixed;
+    bottom: 120px;
+    padding: 20px;
+    border: solid 2px cornflowerblue;
+    border-radius: 6px;
+    box-shadow: 1px 1px 1px 1px rgb(128, 128, 128);
+}
+
+.radio__wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.radio-group {
+    margin: 10px 20px;
+}
+
+.radio-button {
+    margin: 5px;
+}
+
+.dialog-button {
+    width: 50%;
+    align-self: center;
+}
