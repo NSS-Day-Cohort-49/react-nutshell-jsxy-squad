@@ -5,45 +5,33 @@ import { FriendContext } from "./FriendProvider";
 import { UserContext } from "../users/UserProvider";
 
 export const FriendList = () => {
-    const { getFriends, removeFriend, friends } = useContext(FriendContext)
-    const { getUsers, users } = useContext(UserContext)
+    const { getFriends, removeFriend, friends, searchTerms } = useContext(FriendContext)
+    const { users, getUsers} = useContext(UserContext)
+    const [filteredUsers, setFiltered] = useState([]);
 
-    useEffect(()=> {
-        getFriends()
-    }, [])
 
     useEffect(()=> {
         getUsers()
     }, [])
 
-    
-
-
-
-    const history = useHistory();
-    const {friendId} = useParams();
-    const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
-
-
-
-    const filterfriend = friends.map(friend => {
-        if (friend.id === currentUserId) {
-            return friend
+    useEffect(() => {
+        if (searchTerms !== "") {
+          // If the search field is not blank, display matching users
+          const subset = users.filter(user => user.name.toLowerCase().includes(searchTerms))
+          setFiltered(subset)
+        } else {
+          // If the search field is blank, display all users
+          setFiltered(users)
         }
-    })
+      }, [searchTerms, users])
 
-    const findFrienders = friends.filter((friender)=>{
-        if(friender.friendId === currentUserId){
-            return friender.id
-        } 
-            
-        })
 
-     const mapFriends = users.friends?.map(friender => {
-         return friender.userId
-     }) 
+    useEffect(()=> {
+        getFriends()
+    }, [])
 
-     /* console.log(findFrienders)  */
+
+    const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
     
     return (
         <>
@@ -51,9 +39,10 @@ export const FriendList = () => {
 
              <div className="friends">
                 {
-                    users.map(user => {
-                         return <FriendItem key={user.id} friend={user} />
-                    })
+                    friends.map(friend => {
+                        if(currentUserId === friend.currentUserId){
+                         return <FriendItem key={friend.id} friend={friend} />
+                    }})
                   
                 }
              </div>
