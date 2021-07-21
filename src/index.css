@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+button {
+  font-family: verdana;
+  color: #14396a !important;
+  font-size: 14px;
+  text-shadow: 1px 1px 0px #7cacde;
+  box-shadow: 1px 1px 1px #bee2f9;
+  padding: 4px 8px;
+  border-radius: 10px !important;
+  border: 2px solid #3866a3;
+  background: #63b8ee;
+  background: linear-gradient(to top, #63b8ee, #468ccf);
+  font-weight: bold;
+}
+button:hover {
+  color: #14396a !important;
+  background: #468ccf;
+  background: linear-gradient(to top, #468ccf, #63b8ee);
+}

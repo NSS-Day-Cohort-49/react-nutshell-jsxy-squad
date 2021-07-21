@@ -2,6 +2,7 @@
     padding: 0px 585px 0px 45px;
     grid-column-start: 2;
     width: max-content;
+    border-radius: 10px;
 }
 .task {
     display: grid;
