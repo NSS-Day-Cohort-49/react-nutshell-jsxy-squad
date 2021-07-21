@@ -5,7 +5,12 @@ import { useHistory, useParams } from "react-router-dom"
 export const PlannedEventForm = () => {
     const { addPlannedEvent, updatePlannedEvent, getPlannedEventById } =
         useContext(PlannedEventContext)
-    const [plannedEvent, setPlannedEvent] = useState({})
+    const [plannedEvent, setPlannedEvent] = useState({
+        name: "",
+        date: "",
+        location: "",
+        userId: 0,
+    })
 
     const [isLoading, setIsLoading] = useState(true)
     const { plannedEventId } = useParams()
@@ -33,8 +38,12 @@ export const PlannedEventForm = () => {
         event.preventDefault()
         const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
 
-        if (plannedEventId === 0) {
-            window.alert("Please select an Event")
+        if (
+            plannedEvent.name === "" ||
+            plannedEvent.location === "" ||
+            plannedEvent.Date === ""
+        ) {
+            window.alert("Please enter name of event")
         } else {
             setIsLoading(true)
             if (plannedEventId) {
@@ -65,7 +74,7 @@ export const PlannedEventForm = () => {
                     <input
                         type="text"
                         id="name"
-                        required
+                        required="required"
                         autoFocus
                         className="form-control"
                         placeholder="Event name"
