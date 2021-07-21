@@ -31,7 +31,9 @@ export const MessageForm = () => {
     const [privateDialog, setPrivateDialog] = useState(false)
     const [recipientId, setRecipientId] = useState(0)
 
-    const placeholderString = recipientId ? "Message is now private" : "Type '@' to make message private"
+    const recipientName = users.find(user => user.id === recipientId)?.name
+
+    const placeholderString = recipientId ? `Private message to ${recipientName}` : "Type '@' to make message private"
 
     const handleControlledInputChange = event => {
         const newMessage = { ...message }
@@ -88,16 +90,18 @@ export const MessageForm = () => {
         <>
             <div className="main__message__form">
                 <dialog className="privateDialog" open={privateDialog}>
-                    <div>Who would you like to send this private message?</div>
-                    {users.map(user => {
-                        return <label className="radio-group">
-                            <input type="radio" value={user.id} onChange={() => setRecipientId(user.id)} />{user.name}
+                    <div className="radio__wrapper">
+                        <div>Who would you like to send this message?</div>
+                        {users.map(user => {
+                            return <label className="radio-group">
+                                <input className="radio-button" name="recipient" type="radio" value={user.id} onChange={() => setRecipientId(user.id)} />{user.name}
+                            </label>
+                        })}
+                        <label className="radio-group">
+                            <input className="radio-button" type="radio" name="recipient" value="public" onChange={() => setRecipientId(0)} />Public Message
                         </label>
-                    })}
-                    <label className="radio-group">
-                        <input type="radio" value="public" onChange={() => setRecipientId(0)} />Public
-                    </label>
-                    <button onClick={handleDialogClose}>Close</button>
+                        <button className="dialog-button" onClick={handleDialogClose}>Close</button>
+                    </div>
                 </dialog>
                 <form className="messageForm">
                     <fieldset className="message__textarea">
