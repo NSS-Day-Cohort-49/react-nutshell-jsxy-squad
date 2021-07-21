@@ -22,10 +22,10 @@ export const ArticleItem = ({ article }) => {
     let userButtons
     if (article.userId === parseInt(sessionStorage.getItem("nutshell_user"))) {
         userButtons = <>
-                    <button onClick={() => history.push(`/articles/edit/${article.id}`)}>
+                    <button className="article__button" onClick={() => history.push(`/articles/edit/${article.id}`)}>
                         Edit
                     </button>
-                    <button onClick={() => removeArticle(article.id)}>
+                    <button className="article__button" onClick={() => removeArticle(article.id)}>
                         Delete
                     </button>
                 </>
@@ -34,11 +34,11 @@ export const ArticleItem = ({ article }) => {
     return (
         <section className={`article ${friendClass}`}>
             <h5 className="article__author"> {postedByString}
-                <Link to={`/friends/detail/${author?.id}`}>
+                <Link className="article__link" to={`/friends/detail/${author?.id}`}>
                     {author?.name}
                 </Link>
             </h5>
-            <a className="article__title" href={article.articleURL}>{article.title}</a>
+            <a className="article__title article__link" href={article.articleURL}>{article.title}</a>
             <div className="article__synopsis">{article.synopsis}</div>
             {userButtons}
         </section>
