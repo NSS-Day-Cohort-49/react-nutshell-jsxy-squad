@@ -9,7 +9,7 @@ export const MessageForm = () => {
     const { users, getUsers } = useContext(UserContext)
     const history = useHistory()
     const { messageId } = useParams()
-    const [ isLoading, setIsLoading ] = useState(true)
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         if (messageId) {
@@ -22,22 +22,22 @@ export const MessageForm = () => {
         }
     }, [])
 
-    const [ message, setMessage ] = useState({
+    const [message, setMessage] = useState({
         body: "",
         userId: 0,
         recipientId: 0
     })
 
-    const [ privateDialog, setPrivateDialog] = useState(false)
-    const [ recipientId, setRecipientId ] = useState(0)
+    const [privateDialog, setPrivateDialog] = useState(false)
+    const [recipientId, setRecipientId] = useState(0)
 
     const placeholderString = recipientId ? "Message is now private" : "Type '@' to make message private"
 
     const handleControlledInputChange = event => {
-        const newMessage = {...message}
+        const newMessage = { ...message }
         newMessage[event.target.id] = event.target.value
 
-        if(newMessage.body === "@") {
+        if (newMessage.body === "@") {
             setPrivateDialog(true)
         }
 
@@ -52,7 +52,7 @@ export const MessageForm = () => {
             userId: 0,
             recipientId: 0
         })
-    } 
+    }
 
     const handleClickSendMessage = event => {
         event.preventDefault()
@@ -73,21 +73,22 @@ export const MessageForm = () => {
                 userId: currentUserId,
                 recipientId: recipientId
             }
-    
+
             addMessage(newMessage)
-            .then(setRecipientId(0))
-            .then(setMessage({
-                body: "",
-                userId: 0,
-                recipientId: 0
-            }))
+                .then(setRecipientId(0))
+                .then(setMessage({
+                    body: "",
+                    userId: 0,
+                    recipientId: 0
+                }))
         }
     }
 
     return (
         <>
-            <dialog className="privateDialog" open={privateDialog}>
-                <div>Who would you like to send this private message?</div>
+            <div className="main__message__form">
+                <dialog className="privateDialog" open={privateDialog}>
+                    <div>Who would you like to send this private message?</div>
                     {users.map(user => {
                         return <label className="radio-group">
                             <input type="radio" value={user.id} onChange={() => setRecipientId(user.id)} />{user.name}
@@ -96,18 +97,19 @@ export const MessageForm = () => {
                     <label className="radio-group">
                         <input type="radio" value="public" onChange={() => setRecipientId(0)} />Public
                     </label>
-                <button onClick={handleDialogClose}>Close</button>
-            </dialog>
-            <form className="messageForm">
-                <fieldset>
-                    <div className="form-group">
-                    <input type="text" id="body" required autoFocus className="form-control" placeholder={placeholderString} value={message.body} onChange={handleControlledInputChange} />
-                    </div>
-                </fieldset>
-                <button onClick={handleClickSendMessage}>
-                    {messageId ? "Update Message" : "Send Message"}
-                </button>
-            </form>
+                    <button onClick={handleDialogClose}>Close</button>
+                </dialog>
+                <form className="messageForm">
+                    <fieldset>
+                        <div className="form-group">
+                            <input type="text" id="body" required autoFocus className="form-control" placeholder={placeholderString} value={message.body} onChange={handleControlledInputChange} />
+                        </div>
+                    </fieldset>
+                    <button className="send__message__button" onClick={handleClickSendMessage}>
+                        {messageId ? "Update Message" : "Send Message"}
+                    </button>
+                </form>
+            </div>
         </>
     )
 }
