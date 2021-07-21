@@ -4,6 +4,7 @@ export const PlannedEventContext = createContext()
 
 export const PlannedEventProvider = (props) => {
     const [plannedEvents, setPlannedEvents] = useState([])
+    const [weather, setWeather] = useState([])
 
     const getPlannedEventById = (id) => {
         return fetch(
@@ -44,6 +45,12 @@ export const PlannedEventProvider = (props) => {
         }).then(getPlannedEvents)
     }
 
+    const getWeather = () => {
+        return fetch("https://api.openweathermap.org/data/2.5/weather?q=Nashville&appid=1b98bfa12f2c243fbc6f1f5732fbf2b5")
+            .then((response) => response.json())
+            .then(setWeather)
+    }
+
     return (
         <PlannedEventContext.Provider
             value={{
@@ -53,6 +60,8 @@ export const PlannedEventProvider = (props) => {
                 removePlannedEvent,
                 getPlannedEventById,
                 updatePlannedEvent,
+                getWeather,
+                weather
             }}
         >
             {props.children}
