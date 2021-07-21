@@ -100,9 +100,9 @@ export const MessageForm = () => {
                     <button onClick={handleDialogClose}>Close</button>
                 </dialog>
                 <form className="messageForm">
-                    <fieldset>
+                    <fieldset className="message__textarea">
                         <div className="form-group">
-                            <input type="text" id="body" required autoFocus className="form-control" placeholder={placeholderString} value={message.body} onChange={handleControlledInputChange} />
+                            <textarea type="text" id="body" required autoFocus className="form-control" placeholder={placeholderString} value={message.body} onChange={handleControlledInputChange} />
                         </div>
                     </fieldset>
                     <button className="send__message__button" onClick={handleClickSendMessage}>

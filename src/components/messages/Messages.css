@@ -1,9 +1,6 @@
 .message__head {
     padding: 0px 25px;
 }
-.message{
-
-}
 .messages{
     display: grid;
     /* grid-template-columns: auto; */
@@ -26,4 +23,13 @@
 }
 .message__body {
     font-weight: bold;
+}
+.main__message__form {
+    display: grid;
+    grid-template-columns: 20% 20% 20%;
+    padding: 15px 25px;
+    margin: 20px;
+}
+textarea.form-control{
+    width: 40em;
 }
