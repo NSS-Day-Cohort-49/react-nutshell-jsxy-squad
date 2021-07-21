@@ -1,37 +1,37 @@
 .message__head {
-    padding: 0px 25px;
+  padding: 0px 25px;
 }
-.messages{
-    display: grid;
-    /* grid-template-columns: auto; */
-    grid-template-columns: 20% 20% 20%;
-    padding: 15px 25px;
-    margin: 20px;
-    background-color: lightgray;
+.messages {
+  display: grid;
+  /* grid-template-columns: auto; */
+  grid-template-columns: 20% 20% 20%;
+  padding: 15px 25px;
+  margin: 20px;
+  background-color: lightgray;
 }
 .message__buttons {
-    /* padding: 0px 585px 0px 45px; */
-    grid-column-start: 2;
-    width: max-content;
-    align-self: center;
+  /* padding: 0px 585px 0px 45px; */
+  grid-column-start: 2;
+  width: max-content;
+  align-self: center;
 }
 .main__messages {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    word-wrap: break-word;
-    margin: 10px;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  word-wrap: break-word;
+  margin: 10px;
 }
 .message__body {
-    font-weight: bold;
+  font-weight: bold;
 }
 .main__message__form {
-    display: grid;
-    grid-template-columns: 20% 20% 20%;
-    padding: 15px 25px;
-    margin: 20px;
+  display: grid;
+  grid-template-columns: 20% 20% 20%;
+  padding: 15px 25px;
+  margin: 20px;
 }
-textarea.form-control{
-    width: 40em;
+textarea.form-control {
+  width: 40em;
 }
 
 /* Dialog window styling */
