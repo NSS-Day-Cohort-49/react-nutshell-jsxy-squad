@@ -21,7 +21,7 @@ export const PlannedEventItem = ({ plannedEvent }) => {
 
     const customButtons =
         plannedEvent.userId ===
-            parseInt(sessionStorage.getItem("nutshell_user")) ? (
+        parseInt(sessionStorage.getItem("nutshell_user")) ? (
             <>
                 <button
                     onClick={() => {
@@ -47,18 +47,18 @@ export const PlannedEventItem = ({ plannedEvent }) => {
         <>
             <article className="plannedEvent">
                 <div className="event__description">
-                    <div className="plannedEvent__name">{plannedEvent.name}</div>
+                    <h3 className="plannedEvent__name">{plannedEvent.name}</h3>
                     <div className="plannedEvent__location">
-                        {plannedEvent.location}
+                        <b>Location:</b> {plannedEvent.location}
                     </div>
-                    <div className="plannedEvent__date">{plannedEvent.date}</div>
+                    <div className="plannedEvent__date">
+                        <b>Date:</b> {plannedEvent.date}
+                    </div>
                     <div className="plannedEvent__user">
-                        {plannedEvent.user?.name}
+                        <b>Host:</b> {plannedEvent.user?.name}
                     </div>
                 </div>
-                <div className="event__buttons">
-                    {customButtons}
-                </div>
+                <div className="event__buttons">{customButtons}</div>
             </article>
         </>
     )

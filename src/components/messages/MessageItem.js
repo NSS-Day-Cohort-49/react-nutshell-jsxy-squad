@@ -33,22 +33,24 @@ export const MessageItem = ({ message }) => {
     let userButtons
     if (message.userId === parseInt(sessionStorage.getItem("nutshell_user"))) {
         userButtons = <>
-                        <button onClick={() => history.push(`/messages/edit/${message.id}`)}>
-                                Edit
-                        </button>
-                        <button onClick={() => removeMessage(message.id)}>
-                                Delete Message
-                        </button>
-                    </>    
+            <button className="message__buttons" onClick={() => history.push(`/messages/edit/${message.id}`)}>
+                Edit
+            </button>
+            <button className="message__buttons" onClick={() => removeMessage(message.id)}>
+                Delete Message
+            </button>
+        </>
     }
 
     return (
         <>
-            <section className={`message ${privateMessage}`}>
-                <div className="message__sender">{senderString} {privateString}:</div>
-                <div className="message__body">{message.body}</div>
-                {userButtons}
-            </section>
+            <div className="main__messages">
+                <section className={`message ${privateMessage}`}>
+                    <div className="message__sender">{senderString} {privateString}:</div>
+                    <div className="message__body">{message.body}</div>
+                </section>
+            </div>
+                <div className="message__buttons">{userButtons}</div>
         </>
     )
 }

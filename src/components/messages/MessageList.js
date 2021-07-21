@@ -19,6 +19,9 @@ export const MessageList = () => {
 
     return (
         <>
+        <div className="message__head">
+            <h2>Messages</h2>
+        </div>
             <div className="messages">
                 {
                     filteredMessages.map(message => {
