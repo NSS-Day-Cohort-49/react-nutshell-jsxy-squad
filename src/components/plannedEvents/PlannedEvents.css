@@ -1,7 +1,7 @@
 article:first-of-type {
-    background-color: rgb(160, 160, 160);
-    /* font-weight: bold;
-    font-size: 20px; */
+    background-color: teal;
+    font-weight: bold;
+    font-size: 20px;
 }
 .plannedEvents {
     padding: 0px 25px;
@@ -15,20 +15,17 @@ article:first-of-type {
 }
 .event__buttons {
     padding: 0px 585px 0px 45px;
-    grid-column-start: 1;
+    grid-column-start: 3;
     width: max-content;
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
-    flex-direction: row;
-    margin: 10px;
-    min-width: 100px;
-    /* justify-content: space-evenly; */
 }
 .event__discription {
     grid-column-start: 1;
     grid-column-end: 3;
     word-wrap: break-word;
-    /* font-size: 17px; */
+    font-size: 17px;
 }
 .plannedEvent__name {
     font-weight: bold;
