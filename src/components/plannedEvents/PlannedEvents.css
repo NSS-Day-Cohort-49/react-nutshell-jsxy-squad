@@ -4,14 +4,14 @@ article:first-of-type {
     font-size: 20px;
 }
 .plannedEvents {
-  padding: 0px 25px;
+    padding: 0px 25px;
 }
 .plannedEvent {
-  display: grid;
-  grid-template-columns: 20% 20% 20%;
-  padding: 15px 25px;
-  margin: 20px;
-  background-color: lightgray;
+    display: grid;
+    grid-template-columns: 20% 20% 20%;
+    padding: 15px 25px;
+    margin: 20px;
+    background-color: lightgray;
 }
 .event__buttons {
     padding: 0px 585px 0px 45px;
